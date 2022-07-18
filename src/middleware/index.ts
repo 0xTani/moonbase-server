@@ -93,7 +93,7 @@ app.use('/getpfp', (_req:any, res:any)=>{
         // res.sendFile(RAW_SVG)
         // res.json(HTML_FORMATTED_SVG)
         res.header("Content-Type","image/svg+xml");
-        res.header("Cross-Origin-Resource-Policy", "cross-origin")
+        res.header("Cross-Origin-Opener-Policy", "unsafe-none")
         res.send(RAW_SVG)
     }).catch(e=>console.log(e))
 
