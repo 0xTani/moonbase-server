@@ -94,7 +94,7 @@ app.use('/getpfp', (_req:any, res:any)=>{
         // res.json(HTML_FORMATTED_SVG)
         res.header("Content-Type","image/svg+xml");
         // res.header("Cross-Origin-Opener-Policy", "unsafe-none")
-        // res.header("Access-Control-Allow-Origin", "*")
+        res.header("Access-Control-Allow-Origin", "*")
         res.send(RAW_SVG)
     }).catch(e=>console.log(e))
 
@@ -112,6 +112,7 @@ app.use('/getnftdata', (_req:any, res:any)=>{
             description: `Moonbase membership card`,
             image: `https://api.moonbase.vip/getpfp?id=${_req.query.id}`
         }
+        res.header("Access-Control-Allow-Origin", "*")
         res.json(NFT_DATA)
     }).catch(e=>console.log(e))
 
