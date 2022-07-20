@@ -111,7 +111,6 @@ app.use('/getnftdata', (_req:any, res:any)=>{
             name: `Moonbase member: ${USERNAME}`,
             description: `Moonbase membership card`,
             image: `https://api.moonbase.vip/getpfp?id=${_req.query.id}`
-
         }
         res.json(NFT_DATA)
     }).catch(e=>console.log(e))
