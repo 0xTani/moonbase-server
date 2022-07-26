@@ -17,7 +17,8 @@ export default function (app: Application): typeof Model {
     },
     ethaddress: {
       type: DataTypes.STRING,
-      unique: true
+      allowNull: false,
+      defaultValue: ''
     },
     fobId: {
       type: DataTypes.STRING,
@@ -45,6 +46,14 @@ export default function (app: Application): typeof Model {
       type: DataTypes.STRING,
       defaultValue: ""
     },
+    organizations: {
+      type: DataTypes.JSON,
+      defaultValue: []
+    },
+    badges: {
+      type: DataTypes.JSON,
+      defaultValue: []
+    }
     // bio: {
     //   type: DataTypes.STRING,
     //   defaultValue: ""
@@ -70,8 +79,6 @@ export default function (app: Application): typeof Model {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   (users as any).associate = function (models: any): void {
-    users.hasMany(models.badge)
-    users.belongsToMany(models.organization, {through: 'userorganization'})
     // Define associations here
     // See https://sequelize.org/master/manual/assocs.html
   };

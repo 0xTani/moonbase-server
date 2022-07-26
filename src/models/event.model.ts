@@ -6,23 +6,10 @@ import { HookReturn } from 'sequelize/types/hooks';
 
 export default function (app: Application): typeof Model {
   const sequelizeClient: Sequelize = app.get('sequelizeClient');
-  const badge = sequelizeClient.define('badge', {
-    name: {
+  const event = sequelizeClient.define('event', {
+    text: {
       type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-    },
-    definition: {
-      type: DataTypes.STRING,
-      allowNull: true
-    },
-    color: {
-      type: DataTypes.STRING,
-      defaultValue: 'primary',
-    },
-    maxUsers: {
-      type: DataTypes.INTEGER,
-      defaultValue: 0,
+      allowNull: false
     }
   }, {
     hooks: {
@@ -33,8 +20,10 @@ export default function (app: Application): typeof Model {
   });
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  (badge as any).associate = function (models: any): void {
+  (event as any).associate = function (models: any): void {
+    // Define associations here
+    // See https://sequelize.org/master/manual/assocs.html
   };
 
-  return badge;
+  return event;
 }

@@ -7,27 +7,48 @@ export default function (app: Application): void {
 
 
 app.use('/verifyfob', (_req :any, res: any) => {
-
     app.service('users').find({query: _req.query}).then((r:any)=>{
-        
         res.json({
             active: (r.total !== 0),
             user: (r.data.length >0 ? r.data[0].user: null)
         });
-
     });
 });
 
 
 app.use('/seed', (_req:any, res:any)=>{
 
-    app.service('users').create({
-        username:'tristani',
-        password:'yesser',
-        fobId:42069,
-        credits:1337,
+    app.service('badge').create({name: '🤝 Member', 'definition': 'One of us'})
+
+    app.service('badge').create({name: '💻 Contributooor', 'definition': 'Contributes to the Moonbase codebase', color: 'success'}).then((contributorBadge)=>{
+        app.service('badge').create({name: '🎤 Speakooor', 'definition': 'Has given a talk at the space', color: 'info'}).then(speakorBadge => {
+            app.service('users').create({
+                username:'tristani',
+                password:'yesser',
+                fobId:42069,
+                credits:1337,
+                badges: [contributorBadge.id, speakorBadge.id]
+                }).then((user)=>{
+                    console.log(user)
+                })
+            })
+        })
+        
+    app.service('badge').create({name: '⭐ Legend', 'definition': 'Has donated or significantly contributed to the space', color: 'secondary'})
+
+    app.service('badge').create({name: '🐱‍👤 Helpooor', 'definition': 'Has helped the space', color: 'warning'})
+
+    app.service('badge').create({name: '🧹 Cleanooor', 'definition': 'Maintains the space neat and tidy 🧼', color: 'warning'}).then((badge)=>{
+        app.service('users').create({
+            username:'david',
+            password:'yesser',
+            active: true,
+            badges: [badge.id],
+            fobId:133769,
+            credits:25,
+        })
     })
-    
+
     app.service('users').create({
         username:'cam',
         password:'yesser',
@@ -36,9 +57,6 @@ app.use('/seed', (_req:any, res:any)=>{
         credits:0,
     })
 
-    app.service('badge').create({name: 'Contributooor', 'definition': 'Contributes to the Moonbase codebase'})
-    app.service('badge').create({name: 'Cleanooor', 'definition': 'Maintains the space neat and tidy'})
-    app.service('badge').create({name: 'Speakooor', 'definition': 'Has given a talk at ETH Vancouver'})
     res.json({message: 'exectuted'})
 });
 
