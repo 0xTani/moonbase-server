@@ -25,6 +25,8 @@ app.use('/seed', (_req:any, res:any)=>{
             app.service('users').create({
                 username:'tristani',
                 password:'yesser',
+                twitter: 'Tani0x',
+                telegram: 'Tani0x',
                 fobId:42069,
                 credits:1337,
                 badges: [contributorBadge.id, speakorBadge.id]
