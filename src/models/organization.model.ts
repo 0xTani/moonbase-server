@@ -12,6 +12,21 @@ export default function (app: Application): typeof Model {
       allowNull: false,
       unique: true,
     },
+    telegramGroup: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: ''
+    },
+    discord: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: ''
+    },
+    website: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: ''
+    },
     description: {
       type: DataTypes.STRING,
       allowNull: true
@@ -19,6 +34,14 @@ export default function (app: Application): typeof Model {
     pfp: {
       type: DataTypes.STRING,
       allowNull: true
+    },
+    backgroundColor: {
+      type: DataTypes.STRING,
+      defaultValue: '#3788d8'
+    },
+    admins: {
+      type: DataTypes.JSON,
+      defaultValue: []
     }
   }, {
     hooks: {

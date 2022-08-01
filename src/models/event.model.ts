@@ -7,10 +7,25 @@ import { HookReturn } from 'sequelize/types/hooks';
 export default function (app: Application): typeof Model {
   const sequelizeClient: Sequelize = app.get('sequelizeClient');
   const event = sequelizeClient.define('event', {
-    text: {
+    title: {
       type: DataTypes.STRING,
       allowNull: false
-    }
+    },
+    start: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    end: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    backgroundColor: {
+      type: DataTypes.STRING,
+      defaultValue: '#3788d8'
+    },
+    url: { 
+      type: DataTypes.STRING,
+    },
   }, {
     hooks: {
       beforeCount(options: any): HookReturn {

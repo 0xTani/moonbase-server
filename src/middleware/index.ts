@@ -51,6 +51,33 @@ app.use('/seed', (_req:any, res:any)=>{
         })
     })
 
+      app.service('organization').create({
+        name: 'ETH Vancouver',
+        telegramGroup: '',
+        discord: 'https://discord.gg/bhXeFUp2DK',
+        backgroundColor: '#5d638a',
+        description: 'Vancouver\'s Ethereum community'
+      })
+      
+      app.service('organization').create({
+        name: 'DCTRL',
+        telegramGroup: '',
+        discord: 'https://discord.gg/8Wg6qVx6',
+        backgroundColor: '#82531b',
+        description: 'DCTRL Vancouver'
+      })
+
+      app.service('organization').create({
+        name: 'YVR DAO',
+        telegramGroup: '',
+        discord: 'https://discord.gg/bvpNXkrkvD',
+        backgroundColor: '#6447cc',
+        description: 'YVR DAO'
+      })
+
+
+
+
     app.service('users').create({
         username:'cam',
         password:'yesser',
