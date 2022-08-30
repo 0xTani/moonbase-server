@@ -25,6 +25,11 @@ export default function (app: Application): typeof Model {
     },
     url: { 
       type: DataTypes.STRING,
+      defaultValue: ''
+    },
+    description: { 
+      type: DataTypes.STRING,
+      defaultValue: ''
     },
   }, {
     hooks: {
@@ -36,8 +41,7 @@ export default function (app: Application): typeof Model {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   (event as any).associate = function (models: any): void {
-    // Define associations here
-    // See https://sequelize.org/master/manual/assocs.html
+    event.belongsTo(models.organization, {foreignKey: {allowNull: false}})
   };
 
   return event;

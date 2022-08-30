@@ -27,6 +27,8 @@ app.use('/seed', (_req:any, res:any)=>{
                 password:'yesser',
                 twitter: 'Tani0x',
                 telegram: 'Tani0x',
+                organizations: [1,2,3],
+                organizationsSelected: [1,2,3],
                 fobId:42069,
                 credits:1337,
                 badges: [contributorBadge.id, speakorBadge.id]
@@ -45,6 +47,8 @@ app.use('/seed', (_req:any, res:any)=>{
             username:'david',
             password:'yesser',
             active: true,
+            organizations: [1,2,3],
+            organizationsSelected: [1,2,3],
             badges: [badge.id],
             fobId:133769,
             credits:25,

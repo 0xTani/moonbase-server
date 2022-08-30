@@ -53,6 +53,7 @@ export default function (app: Application): typeof Model {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   (organization as any).associate = function (models: any): void {
+    organization.hasMany(models.event)
   };
 
   return organization;

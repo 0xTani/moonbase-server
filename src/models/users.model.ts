@@ -50,14 +50,18 @@ export default function (app: Application): typeof Model {
       type: DataTypes.JSON,
       defaultValue: []
     },
+    organizationsSelected: {
+      type: DataTypes.JSON,
+      defaultValue: []
+    },
     badges: {
       type: DataTypes.JSON,
       defaultValue: []
     },
-    // bio: {
-    //   type: DataTypes.STRING,
-    //   defaultValue: ""
-    // },
+    bio: {
+      type: DataTypes.STRING,
+      defaultValue: ""
+    },
     // @todo login with twitter soon, if it gets too big and cant self regulate
     twitter: {
       type: DataTypes.STRING,
