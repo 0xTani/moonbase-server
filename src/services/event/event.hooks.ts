@@ -4,13 +4,20 @@ import * as authentication from '@feathersjs/authentication';
 
 const { authenticate } = authentication.hooks;
 
+
 export default {
   before: {
     // all: [ authenticate('jwt') ],
     all: [ ],
     find: [],
     get: [],
-    create: [],
+    create: [(request: any)=> {
+      try {
+        delete request.arguments[0]['uuid']
+      } catch (error) {
+        console.error(error)
+      }
+    }],
     update: [],
     patch: [],
     remove: []

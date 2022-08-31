@@ -1,6 +1,6 @@
 // See https://sequelize.org/master/manual/model-basics.html
 // for more of what you can do here.
-import { Sequelize, DataTypes, Model } from 'sequelize';
+import { Sequelize, DataTypes, Model, UUID } from 'sequelize';
 import { Application } from '../declarations';
 import { HookReturn } from 'sequelize/types/hooks';
 
@@ -31,6 +31,10 @@ export default function (app: Application): typeof Model {
       type: DataTypes.STRING,
       defaultValue: ''
     },
+    uuid: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4
+    }
   }, {
     hooks: {
       beforeCount(options: any): HookReturn {
