@@ -1,6 +1,7 @@
 import { any } from 'bluebird';
 import { Request, Response } from 'express';
 import { Application } from '../declarations';
+const ics = require('ics');
 // Don't remove this comment. It's needed to format import lines nicely.
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-empty-function
@@ -187,6 +188,8 @@ export default function (app: Application): void {
       .catch(e => console.log(e));
   });
 
+  function yoink() {}
+
   function transformEventsToIcal(events: IEventResponse[]) {
     const event = {
       start: [2018, 5, 30, 6, 30],
@@ -196,20 +199,45 @@ export default function (app: Application): void {
       location: 'Folsom Field, University of Colorado (finish line)',
       url: 'http://www.bolderboulder.com/',
       geo: { lat: 40.0095, lon: 105.2669 },
-      categories: ['10k races', 'Memorial Day Weekend', 'Boulder CO'],
+      categories: ['Tech', 'IT', 'Vancouver'],
       status: 'CONFIRMED',
       busyStatus: 'BUSY',
       organizer: { name: 'Admin', email: 'Race@BolderBOULDER.com' },
-      attendees: [
-        { name: 'Adam Gibbons', email: 'adam@example.com', rsvp: true, partstat: 'ACCEPTED', role: 'REQ-PARTICIPANT' },
-        {
-          name: 'Brittany Seaton',
-          email: 'brittany@example2.org',
-          dir: 'https://linkedin.com/in/brittanyseaton',
-          role: 'OPT-PARTICIPANT',
-        },
-      ],
     };
+
+    ics.createEvent(event, (error: any, value: any) => {
+      if (error) {
+        console.log(error);
+        return;
+      }
+
+      console.log(value);
+      //   BEGIN:VCALENDAR
+      //   VERSION:2.0
+      //   CALSCALE:GREGORIAN
+      //   PRODID:adamgibbons/ics
+      //   METHOD:PUBLISH
+      //   X-PUBLISHED-TTL:PT1H
+      //   BEGIN:VEVENT
+      //   UID:S8h0Vj7mTB74p9vt5pQzJ
+      //   SUMMARY:Bolder Boulder
+      //   DTSTAMP:20181017T204900Z
+      //   DTSTART:20180530T043000Z
+      //   DESCRIPTION:Annual 10-kilometer run in Boulder\, Colorado
+      //   X-MICROSOFT-CDO-BUSYSTATUS:BUSY
+      //   URL:http://www.bolderboulder.com/
+      //   GEO:40.0095;105.2669
+      //   LOCATION:Folsom Field, University of Colorado (finish line)
+      //   STATUS:CONFIRMED
+      //   CATEGORIES:10k races,Memorial Day Weekend,Boulder CO
+      //   ORGANIZER;CN=Admin:mailto:Race@BolderBOULDER.com
+      //   ATTENDEE;RSVP=TRUE;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Adam Gibbons:mailto:adam@example.com
+      //   ATTENDEE;RSVP=FALSE;ROLE=OPT-PARTICIPANT;DIR=https://linkedin.com/in/brittanyseaton;CN=Brittany
+      //     Seaton:mailto:brittany@example2.org
+      //   DURATION:PT6H30M
+      //   END:VEVENT
+      //   END:VCALENDAR
+    });
   }
 
   app.use('/geticalfeed', (_req: Request, res: Response) => {
@@ -219,6 +247,7 @@ export default function (app: Application): void {
       .find()
       .then((events: any) => {
         console.log(events.data);
+        transformEventsToIcal(events.data);
       });
     res.send('YAY');
   });
