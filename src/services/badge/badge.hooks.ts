@@ -7,13 +7,13 @@ const { authenticate } = authentication.hooks;
 export default {
   before: {
     // all: [ authenticate('jwt') ],
-    all: [  ],
+    all: [],
     find: [],
     get: [],
     create: [],
     update: [],
     patch: [],
-    remove: []
+    remove: [],
   },
 
   after: {
@@ -23,7 +23,7 @@ export default {
     create: [],
     update: [],
     patch: [],
-    remove: []
+    remove: [],
   },
 
   error: {
@@ -33,6 +33,6 @@ export default {
     create: [],
     update: [],
     patch: [],
-    remove: []
-  }
+    remove: [],
+  },
 };

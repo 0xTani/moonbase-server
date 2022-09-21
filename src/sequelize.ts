@@ -7,8 +7,8 @@ export default function (app: Application): void {
     dialect: 'sqlite',
     logging: false,
     define: {
-      freezeTableName: true
-    }
+      freezeTableName: true,
+    },
   });
   const oldSetup = app.setup;
 
