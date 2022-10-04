@@ -7,14 +7,6 @@ import { HookReturn } from 'sequelize/types/hooks';
 export default function (app: Application): typeof Model {
   const sequelizeClient: Sequelize = app.get('sequelizeClient');
 
-<<<<<<< HEAD
-  const users = sequelizeClient.define('users', {
-  
-    username: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true, 
-=======
   const users = sequelizeClient.define(
     'users',
     {
@@ -79,7 +71,6 @@ export default function (app: Application): typeof Model {
         type: DataTypes.STRING,
         defaultValue: '',
       },
->>>>>>> a73a367bbc418c818b35270c1cc8b4f4da209be4
     },
     {
       hooks: {
@@ -94,7 +85,6 @@ export default function (app: Application): typeof Model {
   (users as any).associate = function (models: any): void {
     // Define associations here
     // See https://sequelize.org/master/manual/assocs.html
-
   };
 
   return users;
