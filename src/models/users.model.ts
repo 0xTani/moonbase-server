@@ -13,7 +13,7 @@ export default function (app: Application): typeof Model {
     username: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true
+      unique: true, 
     },
     ethaddress: {
       type: DataTypes.STRING,
@@ -85,6 +85,7 @@ export default function (app: Application): typeof Model {
   (users as any).associate = function (models: any): void {
     // Define associations here
     // See https://sequelize.org/master/manual/assocs.html
+
   };
 
   return users;
