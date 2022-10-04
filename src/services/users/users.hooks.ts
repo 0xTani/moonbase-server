@@ -8,29 +8,29 @@ const { hashPassword, protect } = local.hooks;
 export default {
   before: {
     all: [],
-    find: [ ],
+    find: [],
     // find: [ authenticate('jwt') ],
-    get: [ ],
+    get: [],
     // get: [ authenticate('jwt') ],
-    create: [ hashPassword('password') ],
-    update: [ hashPassword('password'),  authenticate('jwt') ],
-    patch: [ hashPassword('password')],
+    create: [hashPassword('password')],
+    update: [hashPassword('password'), authenticate('jwt')],
+    patch: [hashPassword('password')],
     // patch: [ hashPassword('password'),  authenticate('jwt') ],
-    remove: [ authenticate('jwt') ]
+    remove: [authenticate('jwt')],
   },
 
   after: {
-    all: [ 
+    all: [
       // Make sure the password field is never sent to the client
       // Always must be the last hook
-      protect('password')
+      protect('password'),
     ],
     find: [],
     get: [],
     create: [],
     update: [],
     patch: [],
-    remove: []
+    remove: [],
   },
 
   error: {
@@ -40,6 +40,6 @@ export default {
     create: [],
     update: [],
     patch: [],
-    remove: []
-  }
+    remove: [],
+  },
 };

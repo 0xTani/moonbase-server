@@ -1,6 +1,3 @@
 import { Application } from './declarations';
 
-export default function (app: Application): void {
-
-
-}
+export default function (app: Application): void {}

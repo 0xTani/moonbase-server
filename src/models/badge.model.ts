@@ -6,35 +6,38 @@ import { HookReturn } from 'sequelize/types/hooks';
 
 export default function (app: Application): typeof Model {
   const sequelizeClient: Sequelize = app.get('sequelizeClient');
-  const badge = sequelizeClient.define('badge', {
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
+  const badge = sequelizeClient.define(
+    'badge',
+    {
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+      },
+      definition: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      color: {
+        type: DataTypes.STRING,
+        defaultValue: 'primary',
+      },
+      maxUsers: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+      },
     },
-    definition: {
-      type: DataTypes.STRING,
-      allowNull: true
+    {
+      hooks: {
+        beforeCount(options: any): HookReturn {
+          options.raw = true;
+        },
+      },
     },
-    color: {
-      type: DataTypes.STRING,
-      defaultValue: 'primary',
-    },
-    maxUsers: {
-      type: DataTypes.INTEGER,
-      defaultValue: 0,
-    }
-  }, {
-    hooks: {
-      beforeCount(options: any): HookReturn {
-        options.raw = true;
-      }
-    }
-  });
+  );
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  (badge as any).associate = function (models: any): void {
-  };
+  (badge as any).associate = function (models: any): void {};
 
   return badge;
 }

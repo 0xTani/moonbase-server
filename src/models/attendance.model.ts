@@ -6,27 +6,31 @@ import { HookReturn } from 'sequelize/types/hooks';
 
 export default function (app: Application): typeof Model {
   const sequelizeClient: Sequelize = app.get('sequelizeClient');
-  const attendance = sequelizeClient.define('attendance', {
-    poapMinted: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false
+  const attendance = sequelizeClient.define(
+    'attendance',
+    {
+      poapMinted: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+      },
+      privateAttendance: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+      },
     },
-    privateAttendance: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false
-    }
-  }, {
-    hooks: {
-      beforeCount(options: any): HookReturn {
-        options.raw = true;
-      }
-    }
-  });
+    {
+      hooks: {
+        beforeCount(options: any): HookReturn {
+          options.raw = true;
+        },
+      },
+    },
+  );
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   (attendance as any).associate = function (models: any): void {
-    attendance.belongsTo(models.users)
-    attendance.belongsTo(models.event)
+    attendance.belongsTo(models.users);
+    attendance.belongsTo(models.event);
   };
 
   return attendance;

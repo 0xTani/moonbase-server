@@ -1,6 +1,6 @@
 # moonbase-server
 
-> Moonbase forever
+> Moonbase handles the space hardware and database for events, communities and attendance.
 
 ## About
 
@@ -8,21 +8,17 @@ This project uses [Feathers](http://feathersjs.com). An open source web framewor
 
 ## Getting Started
 
-Getting up and running is as easy as 1, 2, 3.
-
-1. Make sure you have [NodeJS](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed.
 2. Install your dependencies
 
-    ```
-    cd path/to/moonbase-server
-    npm install
-    ```
+   ```
+   yarn
+   ```
 
 3. Start your app
 
-    ```
-    npm start
-    ```
+   ```
+   yarn start
+   ```
 
 ## Testing
 
@@ -33,7 +29,7 @@ Simply run `npm test` and all your tests in the `test/` directory will be run.
 Feathers has a powerful command line interface. Here are a few things it can do:
 
 ```
-$ npm install -g @feathersjs/cli          # Install Feathers CLI
+$ yarn add @feathersjs/cli          # Install Feathers CLI
 
 $ feathers generate service               # Generate a new Service
 $ feathers generate hook                  # Generate a new Hook

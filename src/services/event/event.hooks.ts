@@ -4,23 +4,24 @@ import * as authentication from '@feathersjs/authentication';
 
 const { authenticate } = authentication.hooks;
 
-
 export default {
   before: {
     // all: [ authenticate('jwt') ],
-    all: [ ],
+    all: [],
     find: [],
     get: [],
-    create: [(request: any)=> {
-      try {
-        delete request.arguments[0]['uuid']
-      } catch (error) {
-        console.error(error)
-      }
-    }],
+    create: [
+      (request: any) => {
+        try {
+          delete request.arguments[0]['uuid'];
+        } catch (error) {
+          console.error(error);
+        }
+      },
+    ],
     update: [],
     patch: [],
-    remove: []
+    remove: [],
   },
 
   after: {
@@ -30,7 +31,7 @@ export default {
     create: [],
     update: [],
     patch: [],
-    remove: []
+    remove: [],
   },
 
   error: {
@@ -40,6 +41,6 @@ export default {
     create: [],
     update: [],
     patch: [],
-    remove: []
-  }
+    remove: [],
+  },
 };

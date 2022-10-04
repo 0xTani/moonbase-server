@@ -5,81 +5,90 @@ import { Application } from '../declarations';
 import { HookReturn } from 'sequelize/types/hooks';
 
 export default function (app: Application): typeof Model {
-
   const sequelizeClient: Sequelize = app.get('sequelizeClient');
 
+<<<<<<< HEAD
   const users = sequelizeClient.define('users', {
   
     username: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true, 
+=======
+  const users = sequelizeClient.define(
+    'users',
+    {
+      username: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+      },
+      ethaddress: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: '',
+      },
+      fobId: {
+        type: DataTypes.STRING,
+      },
+      alias: {
+        type: DataTypes.STRING,
+      },
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      credits: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+      },
+      active: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+      },
+      monthsActive: {
+        type: DataTypes.INTEGER,
+        defaultValue: 1,
+      },
+      pfp: {
+        type: DataTypes.STRING,
+        defaultValue: '',
+      },
+      organizations: {
+        type: DataTypes.JSON,
+        defaultValue: [],
+      },
+      organizationsSelected: {
+        type: DataTypes.JSON,
+        defaultValue: [],
+      },
+      badges: {
+        type: DataTypes.JSON,
+        defaultValue: [],
+      },
+      bio: {
+        type: DataTypes.STRING,
+        defaultValue: '',
+      },
+      // @todo login with twitter soon, if it gets too big and cant self regulate
+      twitter: {
+        type: DataTypes.STRING,
+        defaultValue: '',
+      },
+      telegram: {
+        type: DataTypes.STRING,
+        defaultValue: '',
+      },
+>>>>>>> a73a367bbc418c818b35270c1cc8b4f4da209be4
     },
-    ethaddress: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      defaultValue: ''
+    {
+      hooks: {
+        beforeCount(options: any): HookReturn {
+          options.raw = true;
+        },
+      },
     },
-    fobId: {
-      type: DataTypes.STRING,
-    },
-    alias: {
-      type: DataTypes.STRING,
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    credits: {
-      type: DataTypes.INTEGER,
-      defaultValue: 0
-    },
-    active: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: true
-    },
-    monthsActive: {
-      type: DataTypes.INTEGER,
-      defaultValue: 1
-    },
-    pfp: {
-      type: DataTypes.STRING,
-      defaultValue: ""
-    },
-    organizations: {
-      type: DataTypes.JSON,
-      defaultValue: []
-    },
-    organizationsSelected: {
-      type: DataTypes.JSON,
-      defaultValue: []
-    },
-    badges: {
-      type: DataTypes.JSON,
-      defaultValue: []
-    },
-    bio: {
-      type: DataTypes.STRING,
-      defaultValue: ""
-    },
-    // @todo login with twitter soon, if it gets too big and cant self regulate
-    twitter: {
-      type: DataTypes.STRING,
-      defaultValue: ""
-    },
-    telegram: {
-      type: DataTypes.STRING,
-      defaultValue: ""
-    },
-  
-  
-  }, {
-    hooks: {
-      beforeCount(options: any): HookReturn {
-        options.raw = true;
-      }
-    }
-  });
+  );
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   (users as any).associate = function (models: any): void {
