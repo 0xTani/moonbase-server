@@ -188,8 +188,6 @@ export default function (app: Application): void {
       .catch(e => console.log(e));
   });
 
-  function yoink() {}
-
   function transformEventsToIcal(events: IEventResponse[]) {
     const event = {
       start: [2018, 5, 30, 6, 30],
